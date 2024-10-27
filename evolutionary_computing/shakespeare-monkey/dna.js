@@ -18,8 +18,7 @@ class DNA {
     return this.genes.join("");
   }
 
-  // calculates percentage of correct characters
-  calcFintess(target) {
+  calcFitnessLinear(target) {
     let score = 0;
     for (let i = 0; i < this.genes.length; i++) {
       if (this.genes[i] === target[i]) {
@@ -28,6 +27,35 @@ class DNA {
     }
 
     this.fitness = score / target.length;
+  }
+
+  calcFitnessQuadratic(target) {
+    let score = 0;
+    for (let i = 0; i < this.genes.length; i++) {
+      if (this.genes[i] === target[i]) {
+        score++;
+      }
+    }
+
+    this.fitness = (score * score) / target.length;
+  }
+
+  calcFitnessExponential(target) {
+    let score = 0;
+    for (let i = 0; i < this.genes.length; i++) {
+      if (this.genes[i] === target[i]) {
+        score++;
+      }
+    }
+
+    this.fitness = Math.pow(2, score) / target.length;
+  }
+
+  // calculates percentage of correct characters
+  calcFintess(target) {
+    // this.calcFitnessLinear(target);
+    this.calcFitnessQuadratic(target);
+    // this.calcFitnessExponential(target);
   }
 
   crossOverMidPointStrategy(partner) {
