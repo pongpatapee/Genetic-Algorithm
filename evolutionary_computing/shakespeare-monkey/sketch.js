@@ -20,7 +20,7 @@ function draw() {
   statsDiv.innerText = population.getStats();
   allPhrasesDiv.innerText = population.getPhrases(100);
 
-  if (population.best === target) {
+  if (population.best.getPhrase() === target) {
     noLoop();
   }
 
