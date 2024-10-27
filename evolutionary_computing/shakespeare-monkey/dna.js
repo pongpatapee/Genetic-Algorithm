@@ -32,7 +32,7 @@ class DNA {
 
   crossOverMidPointStrategy(partner) {
     let child = new DNA(this.genes.length);
-    let midpoint = random(this.genes.length);
+    let midpoint = floor(random(this.genes.length));
     for (let i = 0; i < this.genes.length; i++) {
       if (i < midpoint) {
         child.genes[i] = this.genes[i];
@@ -40,6 +40,8 @@ class DNA {
         child.genes[i] = partner.genes[i];
       }
     }
+
+    return child;
   }
 
   crossOverCoinFlip(partner) {
@@ -56,7 +58,7 @@ class DNA {
   }
 
   crossOver(partner) {
-    return this.crossOverCoinFlip(partner);
+    return this.crossOverMidPointStrategy(partner);
   }
 
   mutate(mutationRate) {
